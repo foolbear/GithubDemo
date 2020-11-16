@@ -15,7 +15,9 @@ final class ViewModel: ObservableObject {
     var subscriptions = Set<AnyCancellable>()
     
     init() {
-        self.response = ViewModel.load(from: NSHomeDirectory() + "/Documents/response.json") ?? GitHubResponse()
+        DispatchQueue.main.async {
+            self.response = ViewModel.load(from: NSHomeDirectory() + "/Documents/response.json") ?? GitHubResponse()
+        }
     }
     
     func request() {
@@ -30,7 +32,9 @@ final class ViewModel: ObservableObject {
             .delay(for: .seconds(delay), scheduler: RunLoop.main, options: .none)
             .flatMap { _ in publisher }
             .handleEvents(receiveOutput: { response in
-                ViewModel.save(response, to: NSHomeDirectory() + "/Documents/response.json")
+                DispatchQueue.main.async {
+                    ViewModel.save(response, to: NSHomeDirectory() + "/Documents/response.json")
+                }
             })
             .assign(to: \.response, on: self)
             .store(in: &subscriptions)
