@@ -13,6 +13,7 @@
 		E92E58892562DD0E0059B64D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E92E58882562DD0E0059B64D /* Preview Assets.xcassets */; };
 		E92E58932562DDCA0059B64D /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E58922562DDCA0059B64D /* Model.swift */; };
 		E92E58962562DEE80059B64D /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E58952562DEE80059B64D /* ViewModel.swift */; };
+		E92E58992562EDCB0059B64D /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E58982562EDCB0059B64D /* HistoryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E92E588A2562DD0E0059B64D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E92E58922562DDCA0059B64D /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		E92E58952562DEE80059B64D /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		E92E58982562EDCB0059B64D /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				E92E58872562DD0E0059B64D /* Preview Content */,
 				E92E58922562DDCA0059B64D /* Model.swift */,
 				E92E58952562DEE80059B64D /* ViewModel.swift */,
+				E92E58982562EDCB0059B64D /* HistoryView.swift */,
 			);
 			path = GithubDemo;
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			files = (
 				E92E58932562DDCA0059B64D /* Model.swift in Sources */,
 				E92E58842562DCFC0059B64D /* ContentView.swift in Sources */,
+				E92E58992562EDCB0059B64D /* HistoryView.swift in Sources */,
 				E92E58962562DEE80059B64D /* ViewModel.swift in Sources */,
 				E92E58822562DCFC0059B64D /* GithubDemoApp.swift in Sources */,
 			);

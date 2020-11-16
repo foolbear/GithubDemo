@@ -41,11 +41,11 @@ struct ContentView: View {
 
 extension ContentView {
     var navigationBarTrailing: some View {
-        Button(action: onHistory) { Image(systemName: "clock") }.padding([.leading, .top, .bottom])
+        Button(action: onHistory) { Image(systemName: "clock") }.padding()
     }
     
     var sheetContent: some View {
-        Text("I'm a history")
+        HistoryView().environmentObject(viewModel)
     }
     
     func onHistory() {
