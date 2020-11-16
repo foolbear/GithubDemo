@@ -12,6 +12,7 @@ final class ViewModel: ObservableObject {
     let url = "https://api.github.com"
     let delay: Double = 5.0
     @Published var response: GitHubResponse = GitHubResponse()
+    @Published var history: [Date] = []
     var subscriptions = Set<AnyCancellable>()
     
     init() {
@@ -26,6 +27,9 @@ final class ViewModel: ObservableObject {
             .decode(type: GitHubResponse.self, decoder: JSONDecoder())
             .replaceError(with: GitHubResponse())
             .receive(on: RunLoop.main)
+            .handleEvents(receiveRequest:  { _ in
+                self.history.append(Date())
+            })
 //            .print()
         Timer.publish(every: delay, on: .main, in: .default)
             .autoconnect()
