@@ -9,20 +9,21 @@ import SwiftUI
 import Combine
 
 final class ViewModel: ObservableObject {
-    let url = "https://api.github.com"
-    let delay: Double = 5.0
+    static let url = "https://api.github.com"
+    static let path = NSHomeDirectory() + "/Documents/response.json"
+    static let delay: Double = 5.0
     @Published var response: GitHubResponse = GitHubResponse()
     @Published var history: [Date] = []
     var subscriptions = Set<AnyCancellable>()
     
     init() {
         DispatchQueue.main.async {
-            self.response = ViewModel.load(from: NSHomeDirectory() + "/Documents/response.json") ?? GitHubResponse()
+            self.response = ViewModel.load(from: ViewModel.path) ?? GitHubResponse()
         }
     }
     
     func request() {
-        let publisher = URLSession.shared.dataTaskPublisher(for: URL(string: url)!)
+        let publisher = URLSession.shared.dataTaskPublisher(for: URL(string: ViewModel.url)!)
             .map { $0.data }
             .decode(type: GitHubResponse.self, decoder: JSONDecoder())
             .replaceError(with: GitHubResponse())
@@ -31,13 +32,13 @@ final class ViewModel: ObservableObject {
                 self.history.append(Date())
             })
 //            .print()
-        Timer.publish(every: delay, on: .main, in: .default)
+        Timer.publish(every: ViewModel.delay, on: .main, in: .default)
             .autoconnect()
-            .delay(for: .seconds(delay), scheduler: RunLoop.main, options: .none)
+            .delay(for: .seconds(ViewModel.delay), scheduler: RunLoop.main, options: .none)
             .flatMap { _ in publisher }
             .handleEvents(receiveOutput: { response in
                 DispatchQueue.main.async {
-                    ViewModel.save(response, to: NSHomeDirectory() + "/Documents/response.json")
+                    ViewModel.save(response, to: ViewModel.path)
                 }
             })
             .assign(to: \.response, on: self)

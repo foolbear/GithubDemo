@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var sheetShowing = false
     @ObservedObject var viewModel = ViewModel()
     
     var body: some View {
@@ -27,10 +28,28 @@ struct ContentView: View {
                 }
             }
             .navigationBarTitle(Text("Github Demo"))
+            .navigationBarItems(trailing: navigationBarTrailing)
+            .sheet(isPresented: $sheetShowing) {
+                self.sheetContent
+            }
             .onAppear() {
                 viewModel.request()
             }
         }
+    }
+}
+
+extension ContentView {
+    var navigationBarTrailing: some View {
+        Button(action: onHistory) { Image(systemName: "clock") }.padding([.leading, .top, .bottom])
+    }
+    
+    var sheetContent: some View {
+        Text("I'm a history")
+    }
+    
+    func onHistory() {
+        sheetShowing = true
     }
 }
 
