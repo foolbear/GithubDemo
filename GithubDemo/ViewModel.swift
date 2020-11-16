@@ -28,4 +28,21 @@ final class ViewModel: ObservableObject {
             .assign(to: \.response, on: self)
             .store(in: &subscriptions)
     }
+    
+    static func load(from path: String) -> GitHubResponse? {
+        let url = URL(fileURLWithPath: path)
+        let decoder = JSONDecoder()
+        guard let data = try? Data(contentsOf: url), let response = try? decoder.decode(GitHubResponse.self, from: data) else {
+            return nil
+        }
+        return response
+    }
+    
+    static func save(_ response: GitHubResponse, to path: String) {
+        let url = URL(fileURLWithPath: path)
+        let encoder = JSONEncoder()
+        if let data = try? encoder.encode(response) {
+            try? data.write(to: url)
+        }
+    }
 }
