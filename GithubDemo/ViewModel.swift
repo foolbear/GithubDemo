@@ -14,6 +14,10 @@ final class ViewModel: ObservableObject {
     @Published var response: GitHubResponse = GitHubResponse()
     var subscriptions = Set<AnyCancellable>()
     
+    init() {
+        self.response = ViewModel.load(from: NSHomeDirectory() + "/Documents/response.json") ?? GitHubResponse()
+    }
+    
     func request() {
         let publisher = URLSession.shared.dataTaskPublisher(for: URL(string: url)!)
             .map { $0.data }
@@ -25,6 +29,9 @@ final class ViewModel: ObservableObject {
             .autoconnect()
             .delay(for: .seconds(delay), scheduler: RunLoop.main, options: .none)
             .flatMap { _ in publisher }
+            .handleEvents(receiveOutput: { response in
+                ViewModel.save(response, to: NSHomeDirectory() + "/Documents/response.json")
+            })
             .assign(to: \.response, on: self)
             .store(in: &subscriptions)
     }
