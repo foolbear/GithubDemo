@@ -20,7 +20,7 @@ final class ViewModel: ObservableObject {
             .decode(type: GitHubResponse.self, decoder: JSONDecoder())
             .replaceError(with: GitHubResponse())
             .receive(on: RunLoop.main)
-            .print()
+//            .print()
         Timer.publish(every: delay, on: .main, in: .default)
             .autoconnect()
             .delay(for: .seconds(delay), scheduler: RunLoop.main, options: .none)
