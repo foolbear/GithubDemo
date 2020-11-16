@@ -13,13 +13,16 @@ struct HistoryView: View {
     
     var body: some View {
         VStack {
-            HStack {
-                Text("History")
-                Button(action: onClose) { Image(systemName: "xmark") }.padding()
+            ZStack {
+                Text("History").font(.headline)
+                HStack {
+                    Spacer()
+                    Button(action: onClose) { Image(systemName: "xmark") }.padding()
+                }
             }
             List {
-                ForEach(viewModel.history, id:\.self) { date in
-                    Text("\(date)")
+                ForEach(viewModel.history.reversed(), id:\.self) { date in
+                    Text("\(date)").font(.caption)
                 }
             }
         }
