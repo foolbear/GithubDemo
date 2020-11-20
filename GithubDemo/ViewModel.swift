@@ -28,7 +28,8 @@ final class ViewModel: ObservableObject {
             .decode(type: GitHubResponse.self, decoder: JSONDecoder())
             .replaceError(with: GitHubResponse())
             .receive(on: RunLoop.main)
-            .handleEvents(receiveRequest:  { _ in
+            .handleEvents(receiveRequest:  { [weak self] _ in
+                guard let self = self else { return }
                 self.history.append(Date())
             })
 //            .print()
