@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E92C424D256916E3006403A6 /* FoolUtilities in Frameworks */ = {isa = PBXBuildFile; productRef = E92C424C256916E3006403A6 /* FoolUtilities */; };
 		E92E58822562DCFC0059B64D /* GithubDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E58812562DCFC0059B64D /* GithubDemoApp.swift */; };
 		E92E58842562DCFC0059B64D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E92E58832562DCFC0059B64D /* ContentView.swift */; };
 		E92E58862562DD0E0059B64D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E92E58852562DD0E0059B64D /* Assets.xcassets */; };
@@ -33,6 +34,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E92C424D256916E3006403A6 /* FoolUtilities in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,6 +96,9 @@
 			dependencies = (
 			);
 			name = GithubDemo;
+			packageProductDependencies = (
+				E92C424C256916E3006403A6 /* FoolUtilities */,
+			);
 			productName = GithubDemo;
 			productReference = E92E587E2562DCFC0059B64D /* GithubDemo.app */;
 			productType = "com.apple.product-type.application";
@@ -121,6 +126,9 @@
 				Base,
 			);
 			mainGroup = E92E58752562DCFC0059B64D;
+			packageReferences = (
+				E92C424B256916E3006403A6 /* XCRemoteSwiftPackageReference "FoolUtilities" */,
+			);
 			productRefGroup = E92E587F2562DCFC0059B64D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -340,6 +348,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		E92C424B256916E3006403A6 /* XCRemoteSwiftPackageReference "FoolUtilities" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/foolbear/FoolUtilities.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E92C424C256916E3006403A6 /* FoolUtilities */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E92C424B256916E3006403A6 /* XCRemoteSwiftPackageReference "FoolUtilities" */;
+			productName = FoolUtilities;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E92E58762562DCFC0059B64D /* Project object */;
 }
